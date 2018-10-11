@@ -4,15 +4,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="id">
 <head>
+	<?php $this->load->view("admin/_partials/head.php") ?>
     <meta charset="utf-8">
     <title>Movie List</title>
     <!--Load file bootstrap.css-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-<div class="container">
-    <h1>Data <strong>Movie</strong></h1>
+<body id = "page-top">
+	<?php $this->load->view("admin/_partials/navbar.php") ?>
+<div id="wrapper">
+
+	<?php $this->load->view("admin/_partials/sidebar.php") ?>
+
+	<div id="content-wrapper">
+
+		<div class="container-fluid">
+
+        <!-- 
+        karena ini halaman overview (home), kita matikan partial breadcrumb.
+        Jika anda ingin mengampilkan breadcrumb di halaman overview,
+        silahkan hilangkan komentar (//) di tag PHP di bawah.
+        -->
+		<?php //$this->load->view("admin/_partials/breadcrumb.php") ?>
+
+		<!-- Icon Cards-->
+<h1>Data <strong>Movie</strong></h1>
  
     <table class="table table-striped">
 <thead>
@@ -35,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 	<td><?php echo $i; ?></td>
                     <td><?php echo $tmpl->cat_p_title; ?></td>
                     <td><?php echo $tmpl->product_title; ?></td>
-                    <td><img src=".base_url(product_images/'.<?php echo$tmpl->product_img1;?>')." width="80px" height="80px" ></td>
+                    <td><img src="<?= base_url ()?>assets/product_images/<?php  echo $tmpl->product_img1;?>" width="80px" height="80px"></td>
                     <td><?php echo $tmpl->product_price; ?></td>
                     <td><?php echo $tmpl->product_keyword; ?></td>
                     <td><?php echo $tmpl->product_desc; ?></td>
@@ -51,17 +68,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php $i++; } ?>
         </tbody>
     </table>
-    <div class="row">
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+		<!-- Sticky Footer -->
+		<?php $this->load->view("admin/_partials/footer.php") ?>
+            <div class="row">
         <div class="col">
             <!--Tampilkan pagination-->
             <?php echo $pagination; ?>
         </div>
     </div>
-      
- 
-</div>
-<!--Load file bootstrap.js-->
-<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
 
+	</div>
+	<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+
+<?php $this->load->view("admin/_partials/scrolltop.php") ?>
+<?php $this->load->view("admin/_partials/modal.php") ?>
+<?php $this->load->view("admin/_partials/js.php") ?>
+    
 </body>
 </html>
