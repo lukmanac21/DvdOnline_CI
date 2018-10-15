@@ -6,8 +6,8 @@
             <span>Movie</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?php echo site_url('admin/products/add') ?>">New Movie</a>
-            <a class="dropdown-item" href="<?php echo site_url('admin/products') ?>">List Movie</a>
+            <a class="dropdown-item" href="<?php echo site_url('admin/Product/addProduct') ?>">New Movie</a>
+            <a class="dropdown-item" href="<?php echo site_url('admin/Product/index') ?>">List Movie</a>
         </div>
     </li>
     <li class="nav-item dropdown <?php echo $this->uri->segment(2) == 'products' ? 'active': '' ?>">

@@ -46,13 +46,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </thead>
         <tbody>
             <!--Fetch data dari database-->
-            <?php $i=1; ?>
+            <?php $i=1;
+            $numstart = $this->uri->segment(4) + 1;
+            ?>
             <?php foreach($tampil as $tmpl) {;?>
                 <tr>
-                	<td><?php echo $i; ?></td>
+                	<td><?php echo $numstart; ?></td>
                     <td><?php echo $tmpl->cat_p_title; ?></td>
                     <td><?php echo $tmpl->product_title; ?></td>
-                    <td><img src="<?= base_url ()?>assets/product_images/<?php  echo $tmpl->product_img1;?>" width="80px" height="80px"></td>
+                    <td><img src="<?= base_url ()?>assets/product_images/<?php  echo $tmpl->product_img1;?>" width="80px" height="80px" class="img-thumbnail"></td>
                     <td><?php echo $tmpl->product_price; ?></td>
                     <td><?php echo $tmpl->product_keyword; ?></td>
                     <td><?php echo $tmpl->product_desc; ?></td>
@@ -65,7 +67,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         				<span><strong>Delete</strong></span>            
     					</a></td>
                 </tr>
-            <?php $i++; } ?>
+            <?php $i++;
+            $numstart++; } ?>
         </tbody>
     </table>
 
