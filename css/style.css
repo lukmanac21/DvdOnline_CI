@@ -11,3 +11,11 @@ a.btn:hover {
      -moz-transition-duration: 0.5s;
      -o-transition-duration: 0.5s;
  }
+td{
+    border:1px solid #000;
+}
+ 
+tr td:last-child{
+    width:1%;
+    white-space:nowrap;
+}

@@ -13,3 +13,15 @@
 <!-- Demo scripts for this page-->
 <script src="<?php echo base_url('js/demo/datatables-demo.js') ?>"></script>
 <script src="<?php echo base_url('js/demo/chart-area-demo.js') ?>"></script>
+<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<script>
+$(document).ready(function(){
+  $("#mySearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
