@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once(APPPATH.'controllers/admin/Product.php');
+require_once(APPPATH.'controllers/admin/Slider.php');
 
 class Slider extends CI_Controller {
-function __construct(){
-parent::__construct();
-$this->load->library('session');
+    function __construct(){
+        parent::__construct();
+        $this->load->library('session');
 $this->load->database(); // load database
 $this->load->library('table');
 $this->load->helper('url');
@@ -25,7 +25,7 @@ public function index()
 
         //load view mahasiswa view
 
- 
+
         // Membuat Style pagination untuk BootStrap v4
         $config['first_link']       = 'First';
         $config['last_link']        = 'Last';
@@ -45,20 +45,63 @@ public function index()
         $config['first_tagl_close'] = '</span></li>';
         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['last_tagl_close']  = '</span></li>';
- 
+
         $this->pagination->initialize($config);
         $data['page'] = ($this->uri->segment(4) ? $this->uri->segment(4) : 0);
- 
+
         //panggil function get_mahasiswa_list yang ada pada mmodel mahasiswa_model. 
         $data['data'] = $this->mSlider->get_slider_list($config["per_page"], $data['page']);           
- 
+
         $data['pagination'] = $this->pagination->create_links();
- 
+
       	$data['title'] = "Table Of Slider"; //title web
-		$data['tampil'] = $this->mSlider->tampil($config["per_page"], $data['page']); 
-        $this->load->view('admin/vSlider',$data);
-}
-public function addSlider(){
-    $this->load->view('admin/vAddSlider',$data);
-}
+          $data['tampil'] = $this->mSlider->tampil($config["per_page"], $data['page']); 
+          $this->load->view('admin/vSlider',$data);
+      }
+      public function addSlider(){
+        $data['slide_name'] = $this->input->post('sname');
+        $data['slider_status'] = $this->input->post('sstatus');
+        $data['slide_images'] = $_FILES['pimages']['name'];
+        $config['upload_path'] = './assets/Slider_images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']     = '100';
+        $config['max_width'] = '1024';
+        $config['max_height'] = '768';
+        $this->load->library('upload', $config);
+        if ( ! $this->upload->do_upload('pimages')){
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+            $upload_data = $this->upload->data();
+            $data['slide_images'] = $upload_data['file_name'];
+        }
+        $this->mSlider->save_slider($data, 'tbl_slider');
+        redirect('admin/Slider');
+    }
+    public function editSlider(){
+        $where['slide_id'] = $this->input->post('sid');
+        $data['slide_name'] = $this->input->post('sname');
+        $data['slider_status'] = $this->input->post('sstatus');
+        $data['slide_images'] = $_FILES['pimages']['name'];
+        $config['upload_path'] = './assets/Slider_images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']     = '100';
+        $config['max_width'] = '1024';
+        $config['max_height'] = '768';
+        $this->load->library('upload', $config);
+        if ( ! $this->upload->do_upload('pimages')){
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else {
+            $upload_data = $this->upload->data();
+            $data['slide_images'] = $upload_data['file_name'];
+        }
+        $this->mSlider->edit_slide($where, $data, 'tbl_slider');
+        redirect('admin/Slider');
+    }
+    public function deleteSlider() {
+        $where['slide_id'] = $this->input->post('sdelete');
+        $this->mSlider->delete_slide($where,'tbl_slider');
+        redirect('admin/Slider');
+    }
 }

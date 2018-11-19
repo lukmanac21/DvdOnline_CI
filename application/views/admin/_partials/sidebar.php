@@ -13,7 +13,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('admin/User/index') ?>"role="button">
+        <a class="nav-link" href="<?php echo site_url('admin/Customer/index') ?>"role="button">
             <i class="fas fa-fw fa-users"></i>
             <span>User</span>
         </a>

@@ -31,10 +31,6 @@ class mProduct extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($tbl);
 	}
-	function get_product_edit($id){
-		$this->db->where('id_prodcuct',$id);
-		$query = $this->db->get('tbl_product');
-		return $query->row();
-	}
+
 }
 ?>
