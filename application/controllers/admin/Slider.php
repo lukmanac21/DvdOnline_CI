@@ -12,6 +12,10 @@ $this->load->helper('url');
 $this->load->library('pagination');
 $this->load->model('admin/mSlider');
 $this->load->helper('form');
+        if($this->session->has_userdata('email')) {
+        } else {
+            redirect('admin/login');
+        }
 }
 public function index()
 {

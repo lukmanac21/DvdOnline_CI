@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <td><?php echo $tmpl->slide_name; ?></td>
                     <td><img src="<?= base_url ()?>assets/slider_images/<?php  echo $tmpl->slide_images;?>" width="15%" class="img-thumbnail"></td>
                     <td><?php echo $tmpl->slider_status; ?></td>
-                    <<td><a class="btn btn-info a-btn-slide-text" data-toggle="modal" data-target="#edit<?php echo $tmpl->slide_id; ?>"><i class="fas fa-fw fa-edit"></i>        
+                    <td><a class="btn btn-info a-btn-slide-text" data-toggle="modal" data-target="#edit<?php echo $tmpl->slide_id; ?>"><i class="fas fa-fw fa-edit"></i>
             </a></td>
             <td><a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#delete<?php echo $tmpl->slide_id; ?>">
               <i class="fas fa-fw fa-trash"></i>
