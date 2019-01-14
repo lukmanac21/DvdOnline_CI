@@ -63,16 +63,17 @@ public function index()
           $this->load->view('admin/vSlider',$data);
       }
       public function addSlider(){
+        $data['date_created'] =date('Y-m-d');
         $data['slide_name'] = $this->input->post('sname');
         $data['slider_status'] = $this->input->post('sstatus');
-        $data['slide_images'] = $_FILES['pimages']['name'];
+        $data['slide_images'] = $_FILES['simages']['name'];
         $config['upload_path'] = './assets/Slider_images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size']     = '100';
         $config['max_width'] = '1024';
         $config['max_height'] = '768';
         $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('pimages')){
+        if ( ! $this->upload->do_upload('simages')){
             $error = array('error' => $this->upload->display_errors());
         }
         else {
@@ -86,26 +87,26 @@ public function index()
         $where['slide_id'] = $this->input->post('sid');
         $data['slide_name'] = $this->input->post('sname');
         $data['slider_status'] = $this->input->post('sstatus');
-        $data['slide_images'] = $_FILES['pimages']['name'];
+        $data['slide_images'] = $_FILES['simages']['name'];
         $config['upload_path'] = './assets/Slider_images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size']     = '100';
         $config['max_width'] = '1024';
         $config['max_height'] = '768';
         $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('pimages')){
+        if ( ! $this->upload->do_upload('simages')){
             $error = array('error' => $this->upload->display_errors());
         }
         else {
             $upload_data = $this->upload->data();
             $data['slide_images'] = $upload_data['file_name'];
         }
-        $this->mSlider->edit_slide($where, $data, 'tbl_slider');
+        $this->mSlider->edit_slider($where, $data, 'tbl_slider');
         redirect('admin/Slider');
     }
     public function deleteSlider() {
         $where['slide_id'] = $this->input->post('sdelete');
-        $this->mSlider->delete_slide($where,'tbl_slider');
+        $this->mSlider->delete_slider($where,'tbl_slider');
         redirect('admin/Slider');
     }
 }

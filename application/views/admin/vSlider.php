@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <?php echo form_open_multipart('admin/Slider/addSlide'); ?>
+              <?php echo form_open_multipart('admin/Slider/addSlider'); ?>
             <div class="form-group">
               <input type="text" name="sname" class="form-control" id="sname" placeholder="Slider Name">
             </div>
