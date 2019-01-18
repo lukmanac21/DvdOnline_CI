@@ -102,12 +102,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="modal-body">
       <?php echo form_open_multipart('admin/Slider/editSlider'); ?>
       <div class="form-group">
-        <input type="hidden" name="pid" value="<?php echo $tmpl->slide_id; ?>">
+        <input type="hidden" name="sid" value="<?php echo $tmpl->slide_id; ?>">
         <input type="text" name="sname" class="form-control" id="sname" value="<?php echo $tmpl->slide_name; ?>">
       </div>
       <div class="form-group">
-        <input type="text" name="sstatus" class="form-control" id="status" value="<?php echo $tmpl->slider_status; ?>">
-      </div>           
+              <select class="form-control" id="sstatus" name="sstatus" placeholder="Slider Status">
+                  <option value="ACTIVE">ACTIVE</option>
+                  <option value="INACTIVE">INACTIVE</option>
+              </select>
+            </div>                  
      <div class="custom-file">
       <input type="file" class="custom-file-input" id="simages" name="simages" required>
       <label class="custom-file-label" for="simages">Choose file</label>
